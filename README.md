@@ -1,31 +1,115 @@
-# Self-Checkout System Using Jetson Nano and TensorFlow
+# Self-Checkout System Using Jetson Nano
 
-Developed an automated self-checkout system using real-time object detection with **TensorFlow Lite** on **Jetson Nano**. This system enhances retail checkout efficiency by leveraging advanced machine learning models for item recognition.
+An automated, **vision-based self-checkout system** for fruits and produce using **NVIDIA Jetson Nano**.
+It combines **real-time object detection** with **weight measurement** and **cloud database integration** to make supermarket checkout faster and error-free.
 
-## Features
-- **Real-Time Object Detection:** Seamless item recognition using TensorFlow Lite.
-- **Optimized Performance:** Improved item recognition accuracy by 20%.
-- **Hardware Integration:** Combined Jetson Nano’s power with efficient software for faster transactions.
-- **Efficiency Boost:** Reduced checkout times by 40%, streamlining the shopping experience.
+---
 
-## Project Structure
+## ✨ Features
 
+* Real-time fruit/produce detection with **YOLOv8 / TensorFlow Lite**
+* **Edge inference on Jetson Nano** for low latency
+* **Weight sensing** with Load Cell + HX711 + ESP8266
+* **Dynamic pricing** (shop owner updates price in database)
+* **Cloud Firebase/SQL integration** for storing bills, prices, and transactions
 
+---
 
+## 📂 Project Structure
 
+* `object_detection_and_image_classification.py` → main detection + classification script
+* `TFLite_Read_Image.py` → helper to run TFLite model on sample images
+* `test.tflite` → trained model file (TensorFlow Lite)
+* `firebase_key.json` → Firebase key (secure, do not expose publicly)
+* `Sample_TFLite_model/` → sample models for testing
+* `README.md` → project documentation
 
+---
 
+## ⚙️ System Components
 
-## How to Run
+| Component                       | Purpose                                |
+| ------------------------------- | -------------------------------------- |
+| **Jetson Nano**                 | Runs ML inference at edge              |
+| **HP w200 Webcam**              | Captures fruit/produce images          |
+| **HX711 + Load Cell + ESP8266** | Measures fruit weight, sends to Jetson |
+| **Firebase / Cloud SQL**        | Stores items, prices, and billing data |
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/akhiljoshi7060/Self-Checkout-System-Jetson-Nano.git
-   cd Self-Checkout-System-Jetson-Nano
+**Formula:**
 
-2.Install dependencies:
- pip install -r requirements.txt
+```
+Item Price = (Price per weight unit) × (Weight measured)
+```
 
+---
 
-3.Run the self-checkout detection script:
- python scripts/self_checkout.py
+## 🚀 Setup & Usage
+
+### 1. Clone Repo
+
+```bash
+git clone https://github.com/akhiljoshi7060/Self-Checkout-System-Jetson-Nano.git
+cd Self-Checkout-System-Jetson-Nano
+```
+
+### 2. Install Requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Connect Hardware
+
+* Attach **camera** to Jetson Nano
+* Connect **load cell (HX711 + ESP8266)**
+* Ensure Firebase/SQL credentials are set correctly
+
+### 4. Run Detection
+
+```bash
+python object_detection_and_image_classification.py
+```
+
+### 5. Test Model on Image
+
+```bash
+python TFLite_Read_Image.py
+```
+
+---
+
+## 📊 Training Details
+
+* Input size: **640×640**
+* Epochs: **50**
+* Augmentations: flip (LR/UD), scale, mosaic, mixup, translate, randaugment
+
+---
+
+## 🛠️ Challenges Faced
+
+* OS crashes on Jetson Nano board during testing
+* Load cell calibration issues → inconsistent values
+* Mechanical plate mismatch
+* Edge-inference performance tuning
+
+---
+
+## 🔮 Future Improvements
+
+* Better calibration + mechanical design
+* Expand fruit dataset for robustness
+* Add touchscreen checkout interface
+* Handle overlapping items and ambiguous classifications
+
+---
+
+## 👨‍💻 Author
+
+* **Akhil Joshi**
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
