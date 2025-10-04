@@ -92,24 +92,3 @@ python TFLite_Read_Image.py
 * Load cell calibration issues → inconsistent values
 * Mechanical plate mismatch
 * Edge-inference performance tuning
-
----
-
-## 🔮 Future Improvements
-
-* Better calibration + mechanical design
-* Expand fruit dataset for robustness
-* Add touchscreen checkout interface
-* Handle overlapping items and ambiguous classifications
-
----
-
-## 👨‍💻 Author
-
-* **Akhil Joshi**
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
