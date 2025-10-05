@@ -14,18 +14,6 @@ It combines **real-time object detection** with **weight measurement** and **clo
 * **Cloud Firebase/SQL integration** for storing bills, prices, and transactions
 
 ---
-
-## 📂 Project Structure
-
-* `object_detection_and_image_classification.py` → main detection + classification script
-* `TFLite_Read_Image.py` → helper to run TFLite model on sample images
-* `test.tflite` → trained model file (TensorFlow Lite)
-* `firebase_key.json` → Firebase key (secure, do not expose publicly)
-* `Sample_TFLite_model/` → sample models for testing
-* `README.md` → project documentation
-
----
-
 ## ⚙️ System Components
 
 | Component                       | Purpose                                |
@@ -40,8 +28,6 @@ It combines **real-time object detection** with **weight measurement** and **clo
 ```
 Item Price = (Price per weight unit) × (Weight measured)
 ```
-
----
 
 ## 🚀 Setup & Usage
 
